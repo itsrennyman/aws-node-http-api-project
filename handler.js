@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports.hello = async (event) => {
+  const data = JSON.parse(event.body);
   const result = await createPDFDocument();
 
   return {
@@ -8,6 +9,7 @@ module.exports.hello = async (event) => {
     body: JSON.stringify(
       {
         ...result,
+        parsedData: data,
         input: event,
       },
       null,
