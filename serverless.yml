@@ -1,0 +1,17 @@
+service: aws-node-http-api-project
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  stage: dev
+  region: eu-west-1
+  runtime: nodejs14.x
+  profile: renato-pozzi
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
