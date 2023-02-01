@@ -6,15 +6,7 @@ module.exports.hello = async (event) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        ...result,
-        parsedData: data,
-        input: event,
-      },
-      null,
-      2
-    ),
+    body: JSON.stringify({ ...result, data }),
   };
 };
 
