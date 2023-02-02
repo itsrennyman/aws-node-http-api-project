@@ -6,10 +6,17 @@ provider:
   stage: dev
   region: eu-west-1
   runtime: nodejs14.x
+  profile: renato-pozzi
 
 functions:
-  hello:
-    handler: handler.hello
+  fetchUsers:
+    handler: handler.fetchUsers
+    events:
+      - httpApi:
+          path: /
+          method: get
+  createUser:
+    handler: handler.createUser
     events:
       - httpApi:
           path: /
