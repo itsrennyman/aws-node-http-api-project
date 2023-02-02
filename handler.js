@@ -1,21 +1,45 @@
 "use strict";
 
-module.exports.hello = async (event) => {
+module.exports.createUser = async (event) => {
   const data = JSON.parse(event.body);
-  const result = await createPDFDocument();
+  const result = await createUser(data);
+
+  return {
+    statusCode: 201,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(...result),
+  };
+};
+
+module.exports.fetchUsers = async (event) => {
+  const result = await fetchUsers();
 
   return {
     statusCode: 200,
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ ...result, data }),
+    body: JSON.stringify(...result),
   };
 };
 
-const createPDFDocument = async () => {
+const createUser = async (data) => {
   return {
     status: "success",
-    message: "Champagne Per Nessuno!",
+    message: "User created.",
+    data: data,
+  };
+};
+
+const fetchUsers = async () => {
+  return {
+    status: "success",
+    data: [
+      { id: 1, firstname: "John", lastname: "Doe" },
+      { id: 2, firstname: "June", lastname: "Price" },
+      { id: 3, firstname: "Jack", lastname: "Ma" },
+    ],
   };
 };
